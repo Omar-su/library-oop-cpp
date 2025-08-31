@@ -1,35 +1,33 @@
 #include <string>
 #include <iostream>
+#include "Book.h"
+#include "EBook.h"
 
 
-class Book {
-protected:
-    std::string title;
-    std::string author;
-    int year;
 
-public:
-    Book(std::string title, std::string author, int year)
-        : title(title), author(author), year(year) {}
+Book::Book(std::string title, std::string author, int year)
+    : title(title), author(author), year(year) {}
 
-    std::string getTitle() const { return title; }
-    void setTitle(const std::string& t) { title = t; }
+std::string Book::getTitle() const { return title; }
+void Book::setTitle(const std::string& t) { title = t; }
 
-    std::string getAuthor() const { return author; }
-    int getYear() const { return year; }
+std::string Book::getAuthor() const { return author; }
+int Book::getYear() const { return year; }
 
-    void printInfo() const {
-        std::cout << "Title: " << title 
-                  << ", Author: " << author 
-                  << ", Year: " << year << std::endl;
-    }
-};
+void Book::printInfo() const {
+    std::cout << "Title: " << title 
+                << ", Author: " << author 
+                << ", Year: " << year << std::endl;
+}
+
 
 
 int main() {
     Book b("haha", "hihi", 2020);
     Book b2("Hello", "mtoek", 2012);
-
+    EBook eb("eb", "auth", 1999, 2.2221212);
+    
     b.printInfo();
     b2.printInfo();
+    eb.printInfo();
 }
