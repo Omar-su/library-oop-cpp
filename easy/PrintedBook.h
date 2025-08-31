@@ -5,7 +5,7 @@
 #include "Book.h"
 
 class PrintedBook : public Book {
-protected:
+private:
     double weight;
 
 public:

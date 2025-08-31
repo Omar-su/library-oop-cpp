@@ -1,11 +1,11 @@
 #pragma once  // prevents multiple inclusions
 
 #include <string>
-#include <iostream> // needed if printInfo() uses std::cout
+#include <iostream> 
 #include "Book.h"
 
 class EBook : public Book {
-protected:
+private:
     double fileSize;
 
 public:

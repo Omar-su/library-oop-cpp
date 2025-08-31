@@ -4,6 +4,7 @@
 #include "EBook.h"
 #include "PrintedBook.h"
 #include <vector>
+#include "Library.h"
 
 
 
@@ -42,6 +43,27 @@ int main() {
 
     for (Book* book : booksPtrArray) {
         book->printInfo();  // use -> for pointers
+    }
+
+
+    Book b4("Title1", "Author1", 2020);
+    Book b3("Title2", "Author2", 1222);
+
+    Library lib;
+    lib.addBook(&b3);
+    lib.addBook(&b4);
+    lib.addBook(&eb);
+
+    lib.printAllBooks();
+    lib.printAuthors();
+
+    
+    Book* n = lib.findBook(eb.getTitle());
+
+    if (n != nullptr) {
+        n->printInfo();   // safe, the book exists
+    } else {
+        std::cout << "Book not found!" << std::endl;
     }
 
 }
