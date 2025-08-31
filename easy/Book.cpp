@@ -2,6 +2,8 @@
 #include <iostream>
 #include "Book.h"
 #include "EBook.h"
+#include "PrintedBook.h"
+#include <vector>
 
 
 
@@ -26,8 +28,20 @@ int main() {
     Book b("haha", "hihi", 2020);
     Book b2("Hello", "mtoek", 2012);
     EBook eb("eb", "auth", 1999, 2.2221212);
+    PrintedBook pb("pb", "pbauthor", 2010, 3.7);
+
+    std::vector<Book*> books = {&b, &b2, &eb, &pb};
+    Book booksArray[] = { b, b2, eb, pb };
     
-    b.printInfo();
-    b2.printInfo();
-    eb.printInfo();
+
+    for(Book* q : books){
+        q -> printInfo();
+    }
+
+    Book* booksPtrArray[] = { &b, &b2, &eb, &pb };
+
+    for (Book* book : booksPtrArray) {
+        book->printInfo();  // use -> for pointers
+    }
+
 }
