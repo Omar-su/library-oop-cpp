@@ -13,7 +13,8 @@ private:
 
 public:
     Book(std::string title, std::string author, int year);
-
+    virtual ~Book() {}
+    
     std::string getTitle() const;
     void setTitle(const std::string& t);
 

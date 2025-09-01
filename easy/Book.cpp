@@ -26,44 +26,28 @@ void Book::printInfo() const {
 
 
 int main() {
-    Book b("haha", "hihi", 2020);
-    Book b2("Hello", "mtoek", 2012);
-    EBook eb("eb", "auth", 1999, 2.2221212);
-    PrintedBook pb("pb", "pbauthor", 2010, 3.7);
-
-    std::vector<Book*> books = {&b, &b2, &eb, &pb};
-    Book booksArray[] = { b, b2, eb, pb };
-    
-
-    for(Book* q : books){
-        q -> printInfo();
-    }
-
-    Book* booksPtrArray[] = { &b, &b2, &eb, &pb };
-
-    for (Book* book : booksPtrArray) {
-        book->printInfo();  // use -> for pointers
-    }
-
-
-    Book b4("Title1", "Author1", 2020);
-    Book b3("Title2", "Author2", 1222);
-
     Library lib;
-    lib.addBook(&b3);
-    lib.addBook(&b4);
-    lib.addBook(&eb);
 
+    auto ebook1 = std::make_shared<EBook>("Title1", "Kafka", 2012, 25);
+    auto pbook1 = std::make_shared<PrintedBook>("Title2", "Kafka", 1975, 0.8);
+
+    lib.addBook(ebook1);
+    lib.addBook(pbook1);
+
+    std::cout << "\nAll Books:\n";
     lib.printAllBooks();
+
+    std::cout << "\nAuthors:\n";
     lib.printAuthors();
 
-    
-    Book* n = lib.findBook(eb.getTitle());
-
-    if (n != nullptr) {
-        n->printInfo();   // safe, the book exists
+    std::cout << "\nFind book:\n";
+    auto found = lib.findBook("C++ Primer");
+    if (found) {
+        found->printInfo();
     } else {
-        std::cout << "Book not found!" << std::endl;
+        std::cout << "Book not found.\n";
     }
+
+    return 0;
 
 }

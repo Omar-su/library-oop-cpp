@@ -1,16 +1,16 @@
 #include "Library.h"
+#include <memory>
 
 
 
-void Library::addBook(Book* b) {
+void Library::addBook(std::shared_ptr<Book> b) {
     books.push_back(b);
-
     authors.insert(b->getAuthor());
-
-    lib[b->getTitle()] = b;
+    lib[b->getTitle()] = b; 
 }
 
-Book* Library::findBook (std::string title) {
+
+std::shared_ptr<Book> Library::findBook(const std::string& title) {
     auto it = lib.find(title);
 
     if (it != lib.end()) {
@@ -21,16 +21,14 @@ Book* Library::findBook (std::string title) {
 }
 
 void Library::printAllBooks () const {
-    for (Book* b : books)
-    {
-        b->printInfo();
+    for (auto& b : books) {
+        std::cout << b->getTitle() << std::endl;
     }
 }
 
 
 void Library::printAuthors () const {
-    for (std::string a : authors)
-    {
+    for (const std::string& a : authors) {
         std::cout << "author: " << a << std::endl;
     }
 }
